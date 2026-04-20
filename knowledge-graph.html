@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>游戏行业知识图谱</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <style>
   body{margin:0;background:#1a1a2e;font-family:'Segoe UI',sans-serif;overflow:hidden;}
   #title{position:absolute;top:16px;left:50%;transform:translateX(-50%);color:#e0e0ff;font-size:20px;font-weight:bold;text-align:center;z-index:10;}
@@ -14,15 +13,15 @@
   #tooltip{position:absolute;display:none;background:rgba(10,10,30,0.92);border:1px solid #444;border-radius:8px;padding:10px 14px;color:#eee;font-size:13px;pointer-events:none;max-width:220px;z-index:20;line-height:1.6;}
   .node circle{cursor:pointer;stroke:#fff;stroke-width:1.5px;}
   .node text{fill:#eee;font-size:11px;pointer-events:none;text-anchor:middle;dominant-baseline:middle;}
-  .link{stroke:#555;stroke-opacity:0.5;}
-  .link.highlighted{stroke:#ffdd57;stroke-opacity:0.9;stroke-width:2px;}
-  .node.dimmed circle{opacity:0.2;}
-  .node.dimmed text{opacity:0.2;}
+  line{stroke:#555;stroke-opacity:0.5;}
+  line.highlighted{stroke:#ffdd57;stroke-opacity:0.9;stroke-width:2.5px;}
+  .node.dimmed circle{opacity:0.15;}
+  .node.dimmed text{opacity:0.15;}
 </style>
 </head>
 <body>
 <div id="title">&#127918; 游戏行业知识图谱</div>
-<div id="subtitle">最后更新：2026-04-20 | 覆盖周期：2026-04-07 至 2026-04-20 | 单击节点可高亮关联关系</div>
+<div id="subtitle">最后更新：2026-04-20 | 覆盖：2026-04-07 至 2026-04-20 | 单击节点高亮关联</div>
 <div id="legend">
   <div><span class="dot" style="background:steelblue"></span>公司</div>
   <div><span class="dot" style="background:orange"></span>人物</div>
@@ -31,52 +30,154 @@
   <div><span class="dot" style="background:#9c27b0"></span>趋势</div>
 </div>
 <div id="tooltip"></div>
-<svg id="graph"></svg>
-<script id="graph-data">
-const GRAPH_DATA = {"accumulated_weeks":["2026-04-07_2026-04-13","2026-04-14_2026-04-20"],"nodes":[{"id":"warhorse","type":"company","label":"Warhorse Studios","section":"AI与职场变动","count":1,"viral":false},{"id":"amazon","type":"company","label":"亚马逊","section":"技术与平台趋势","count":1,"viral":false},{"id":"epic_games","type":"company","label":"Epic Games","section":"AI与职场变动","count":1,"viral":false},{"id":"playtika","type":"company","label":"Playtika","section":"AI与职场变动","count":1,"viral":false},{"id":"scopely","type":"company","label":"Scopely","section":"行业动态","count":2,"viral":false},{"id":"loom_games","type":"company","label":"Loom Games","section":"行业动态","count":1,"viral":false},{"id":"niantic","type":"company","label":"Niantic","section":"行业动态","count":1,"viral":false},{"id":"dream_games","type":"company","label":"Dream Games","section":"行业动态","count":1,"viral":false},{"id":"cvc_capital","type":"company","label":"CVC Capital","section":"行业动态","count":1,"viral":false},{"id":"bethesda","type":"company","label":"Bethesda","section":"新游发布","count":1,"viral":false},{"id":"microsoft","type":"company","label":"微软","section":"新游发布","count":1,"viral":false},{"id":"royal_match","type":"company","label":"Royal Match","section":"营销与运营","count":1,"viral":false},{"id":"sandfall_interactive","type":"company","label":"Sandfall Interactive","section":"新游发布","count":1,"viral":false},{"id":"capcom","type":"company","label":"Capcom","section":"新游发布","count":1,"viral":false},{"id":"gunzilla_games","type":"company","label":"Gunzilla Games","section":"AI与职场变动","count":1,"viral":false},{"id":"game_informer","type":"company","label":"Game Informer","section":"AI与职场变动","count":1,"viral":false},{"id":"iron_galaxy","type":"company","label":"Iron Galaxy","section":"AI与职场变动","count":1,"viral":false},{"id":"ea","type":"company","label":"EA","section":"新游发布","count":1,"viral":false},{"id":"jennifer_english","type":"person","label":"Jennifer English","section":"本周爆发事件","count":1,"viral":false},{"id":"vlad_korolev","type":"person","label":"Vlad Korolev","section":"AI与职场变动","count":1,"viral":false},{"id":"gdc_2026","type":"event","label":"GDC 2026","section":"AI与职场变动","count":2,"viral":false},{"id":"starfield_ps5","type":"event","label":"星空PS5发布","section":"新游发布","count":1,"viral":false},{"id":"amazon_luna_shutdown","type":"event","label":"Luna关闭","section":"技术与平台趋势","count":1,"viral":false},{"id":"layoffs_2026","type":"event","label":"2026裁员潮","section":"AI与职场变动","count":2,"viral":false},{"id":"clair_obscur","type":"event","label":"Clair Obscur: Expedition 33","section":"本周爆发事件","count":1,"viral":true},{"id":"bafta_2026","type":"event","label":"BAFTA游戏奖2026","section":"本周爆发事件","count":1,"viral":true},{"id":"pragmata","type":"event","label":"Pragmata发售","section":"新游发布","count":1,"viral":false},{"id":"sims4_marketplace","type":"event","label":"Sims4主机Marketplace","section":"新游发布","count":1,"viral":false},{"id":"ai_translation","type":"technology","label":"AI翻译","section":"AI与职场变动","count":1,"viral":false},{"id":"generative_ai","type":"technology","label":"生成式AI","section":"AI与职场变动","count":2,"viral":false},{"id":"ai_dev_tools","type":"technology","label":"AI开发工具","section":"技术与平台趋势","count":1,"viral":false},{"id":"cloud_gaming","type":"trend","label":"云游戏整合","section":"技术与平台趋势","count":2,"viral":false},{"id":"mobile_monetization","type":"trend","label":"移动变现","section":"移动游戏","count":2,"viral":false},{"id":"hybrid_casual","type":"trend","label":"混合休闲","section":"移动游戏","count":2,"viral":false},{"id":"creator_marketing","type":"trend","label":"创作者营销","section":"营销与运营","count":2,"viral":false},{"id":"gaming_ads","type":"trend","label":"游戏内广告","section":"营销与运营","count":1,"viral":false},{"id":"pe_gaming_ma","type":"trend","label":"私募并购","section":"行业动态","count":2,"viral":false}],"edges":[{"source":"warhorse","target":"ai_translation","relation":"用AI替代翻译","count":1},{"source":"playtika","target":"generative_ai","relation":"AI战略驱动裁员","count":1},{"source":"epic_games","target":"layoffs_2026","relation":"裁员逾千人","count":1},{"source":"scopely","target":"loom_games","relation":"收购","count":1},{"source":"scopely","target":"niantic","relation":"已收购","count":1},{"source":"cvc_capital","target":"dream_games","relation":"投资35亿","count":1},{"source":"microsoft","target":"bethesda","relation":"母公司","count":1},{"source":"bethesda","target":"starfield_ps5","relation":"开发发行","count":1},{"source":"amazon","target":"amazon_luna_shutdown","relation":"平台收缩","count":1},{"source":"amazon_luna_shutdown","target":"cloud_gaming","relation":"加速整合","count":1},{"source":"gdc_2026","target":"generative_ai","relation":"发布行业调查","count":2},{"source":"ai_dev_tools","target":"layoffs_2026","relation":"加速替代人工","count":1},{"source":"mobile_monetization","target":"hybrid_casual","relation":"驱动增长","count":1},{"source":"pe_gaming_ma","target":"scopely","relation":"私募推动扩张","count":1},{"source":"creator_marketing","target":"gaming_ads","relation":"协同趋势","count":1},{"source":"ai_translation","target":"generative_ai","relation":"应用形式","count":1},{"source":"ai_dev_tools","target":"generative_ai","relation":"应用形式","count":1},{"source":"sandfall_interactive","target":"clair_obscur","relation":"开发","count":1},{"source":"clair_obscur","target":"bafta_2026","relation":"斩获最佳游戏等三项大奖","count":1},{"source":"jennifer_english","target":"clair_obscur","relation":"主演获BAFTA表演奖","count":1},{"source":"capcom","target":"pragmata","relation":"开发并发行","count":1},{"source":"gunzilla_games","target":"game_informer","relation":"收购持有","count":1},{"source":"vlad_korolev","target":"gunzilla_games","relation":"CEO","count":1},{"source":"gunzilla_games","target":"layoffs_2026","relation":"拖欠员工薪资","count":1},{"source":"iron_galaxy","target":"layoffs_2026","relation":"宣布裁员","count":1},{"source":"ea","target":"sims4_marketplace","relation":"推出主机端功能","count":1},{"source":"sims4_marketplace","target":"creator_marketing","relation":"扩大UGC社区触达","count":1},{"source":"generative_ai","target":"layoffs_2026","relation":"加速岗位替代与结构调整","count":1}]};
-</script>
+<svg id="graph" style="width:100vw;height:100vh;display:block;"></svg>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script>
-const CM={company:'steelblue',person:'orange',technology:'#4caf50',event:'crimson',trend:'#9c27b0'};
-const w=window.innerWidth,h=window.innerHeight;
-const svg=d3.select('#graph').attr('width',w).attr('height',h);
-const g=svg.append('g');
-svg.call(d3.zoom().scaleExtent([0.2,5]).on('zoom',e=>g.attr('transform',e.transform)));
-const nodes=GRAPH_DATA.nodes.map(n=>({...n}));
-const links=GRAPH_DATA.edges.map(e=>({...e}));
-const sim=d3.forceSimulation(nodes)
-  .force('link',d3.forceLink(links).id(d=>d.id).distance(110))
-  .force('charge',d3.forceManyBody().strength(-350))
-  .force('center',d3.forceCenter(w/2,h/2))
-  .force('collision',d3.forceCollide().radius(d=>Math.sqrt(d.count)*18+12));
-const link=g.append('g').selectAll('line').data(links).join('line')
-  .attr('class','link').attr('stroke-width',d=>Math.sqrt(d.count)*1.2+1);
-const node=g.append('g').selectAll('g').data(nodes).join('g').attr('class','node')
-  .call(d3.drag()
-    .on('start',(e,d)=>{if(\!e.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
-    .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y;})
-    .on('end',(e,d)=>{if(\!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
-node.append('circle').attr('r',d=>Math.sqrt(d.count)*10+12).attr('fill',d=>CM[d.type]||'#aaa');
-node.filter(d=>d.viral).append('text')
-  .attr('y',d=>-(Math.sqrt(d.count)*10+18)).attr('text-anchor','middle').attr('font-size','16px').text('&#128293;');
-node.append('text').attr('y',1).attr('font-size',d=>Math.min(Math.sqrt(d.count)*4+9,12)).text(d=>d.label);
-const tt=d3.select('#tooltip');
-node.on('mouseover',(e,d)=>{
-  tt.style('display','block').html('<b>'+d.label+'</b><br>类型：'+d.type+'<br>板块：'+d.section+'<br>出现周数：'+d.count+(d.viral?'<br>&#128293; 曾引爆':''));
-}).on('mousemove',e=>{tt.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px');}).on('mouseout',()=>tt.style('display','none'));
-node.on('click',(e,d)=>{
-  e.stopPropagation();
-  const c=new Set([d.id]);
-  links.forEach(l=>{if(l.source.id===d.id)c.add(l.target.id);if(l.target.id===d.id)c.add(l.source.id);});
-  node.classed('dimmed',n=>\!c.has(n.id));
-  link.classed('highlighted',l=>l.source.id===d.id||l.target.id===d.id);
-});
-svg.on('click',()=>{node.classed('dimmed',false);link.classed('highlighted',false);});
-link.on('mouseover',(e,d)=>{
-  tt.style('display','block').html('关系：<b>'+d.relation+'</b><br>出现次数：'+d.count);
-}).on('mousemove',e=>{tt.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px');}).on('mouseout',()=>tt.style('display','none'));
-sim.on('tick',()=>{
-  link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-  node.attr('transform',d=>'translate('+d.x+','+d.y+')');
+var NODES = [
+  {id:"warhorse",type:"company",label:"Warhorse Studios",section:"AI与职场变动",count:1,viral:false},
+  {id:"amazon",type:"company",label:"亚马逊",section:"技术与平台趋势",count:1,viral:false},
+  {id:"epic_games",type:"company",label:"Epic Games",section:"AI与职场变动",count:1,viral:false},
+  {id:"playtika",type:"company",label:"Playtika",section:"AI与职场变动",count:1,viral:false},
+  {id:"scopely",type:"company",label:"Scopely",section:"行业动态",count:2,viral:false},
+  {id:"loom_games",type:"company",label:"Loom Games",section:"行业动态",count:1,viral:false},
+  {id:"niantic",type:"company",label:"Niantic",section:"行业动态",count:1,viral:false},
+  {id:"dream_games",type:"company",label:"Dream Games",section:"行业动态",count:1,viral:false},
+  {id:"cvc_capital",type:"company",label:"CVC Capital",section:"行业动态",count:1,viral:false},
+  {id:"bethesda",type:"company",label:"Bethesda",section:"新游发布",count:1,viral:false},
+  {id:"microsoft",type:"company",label:"微软",section:"新游发布",count:1,viral:false},
+  {id:"royal_match",type:"company",label:"Royal Match",section:"营销与运营",count:1,viral:false},
+  {id:"sandfall_interactive",type:"company",label:"Sandfall Interactive",section:"新游发布",count:1,viral:false},
+  {id:"capcom",type:"company",label:"Capcom",section:"新游发布",count:1,viral:false},
+  {id:"gunzilla_games",type:"company",label:"Gunzilla Games",section:"AI与职场变动",count:1,viral:false},
+  {id:"game_informer",type:"company",label:"Game Informer",section:"AI与职场变动",count:1,viral:false},
+  {id:"iron_galaxy",type:"company",label:"Iron Galaxy",section:"AI与职场变动",count:1,viral:false},
+  {id:"ea",type:"company",label:"EA",section:"新游发布",count:1,viral:false},
+  {id:"jennifer_english",type:"person",label:"Jennifer English",section:"本周爆发事件",count:1,viral:false},
+  {id:"vlad_korolev",type:"person",label:"Vlad Korolev",section:"AI与职场变动",count:1,viral:false},
+  {id:"gdc_2026",type:"event",label:"GDC 2026",section:"AI与职场变动",count:2,viral:false},
+  {id:"starfield_ps5",type:"event",label:"星空PS5发布",section:"新游发布",count:1,viral:false},
+  {id:"amazon_luna_shutdown",type:"event",label:"Luna关闭",section:"技术与平台趋势",count:1,viral:false},
+  {id:"layoffs_2026",type:"event",label:"2026裁员潮",section:"AI与职场变动",count:2,viral:false},
+  {id:"clair_obscur",type:"event",label:"Clair Obscur: Expedition 33",section:"本周爆发事件",count:1,viral:true},
+  {id:"bafta_2026",type:"event",label:"BAFTA游戏奖2026",section:"本周爆发事件",count:1,viral:true},
+  {id:"pragmata",type:"event",label:"Pragmata发售",section:"新游发布",count:1,viral:false},
+  {id:"sims4_marketplace",type:"event",label:"Sims4主机Marketplace",section:"新游发布",count:1,viral:false},
+  {id:"ai_translation",type:"technology",label:"AI翻译",section:"AI与职场变动",count:1,viral:false},
+  {id:"generative_ai",type:"technology",label:"生成式AI",section:"AI与职场变动",count:2,viral:false},
+  {id:"ai_dev_tools",type:"technology",label:"AI开发工具",section:"技术与平台趋势",count:1,viral:false},
+  {id:"cloud_gaming",type:"trend",label:"云游戏整合",section:"技术与平台趋势",count:2,viral:false},
+  {id:"mobile_monetization",type:"trend",label:"移动变现",section:"移动游戏",count:2,viral:false},
+  {id:"hybrid_casual",type:"trend",label:"混合休闲",section:"移动游戏",count:2,viral:false},
+  {id:"creator_marketing",type:"trend",label:"创作者营销",section:"营销与运营",count:2,viral:false},
+  {id:"gaming_ads",type:"trend",label:"游戏内广告",section:"营销与运营",count:1,viral:false},
+  {id:"pe_gaming_ma",type:"trend",label:"私募并购",section:"行业动态",count:2,viral:false}
+];
+var EDGES = [
+  {source:"warhorse",target:"ai_translation",relation:"用AI替代翻译"},
+  {source:"playtika",target:"generative_ai",relation:"AI战略驱动裁员"},
+  {source:"epic_games",target:"layoffs_2026",relation:"裁员逾千人"},
+  {source:"scopely",target:"loom_games",relation:"收购"},
+  {source:"scopely",target:"niantic",relation:"已收购"},
+  {source:"cvc_capital",target:"dream_games",relation:"投资35亿"},
+  {source:"microsoft",target:"bethesda",relation:"母公司"},
+  {source:"bethesda",target:"starfield_ps5",relation:"开发发行"},
+  {source:"amazon",target:"amazon_luna_shutdown",relation:"平台收缩"},
+  {source:"amazon_luna_shutdown",target:"cloud_gaming",relation:"加速整合"},
+  {source:"gdc_2026",target:"generative_ai",relation:"发布行业调查"},
+  {source:"ai_dev_tools",target:"layoffs_2026",relation:"加速替代人工"},
+  {source:"mobile_monetization",target:"hybrid_casual",relation:"驱动增长"},
+  {source:"pe_gaming_ma",target:"scopely",relation:"私募推动扩张"},
+  {source:"creator_marketing",target:"gaming_ads",relation:"协同趋势"},
+  {source:"ai_translation",target:"generative_ai",relation:"应用形式"},
+  {source:"ai_dev_tools",target:"generative_ai",relation:"应用形式"},
+  {source:"sandfall_interactive",target:"clair_obscur",relation:"开发"},
+  {source:"clair_obscur",target:"bafta_2026",relation:"斩获最佳游戏等三项大奖"},
+  {source:"jennifer_english",target:"clair_obscur",relation:"主演获BAFTA表演奖"},
+  {source:"capcom",target:"pragmata",relation:"开发并发行"},
+  {source:"gunzilla_games",target:"game_informer",relation:"收购持有"},
+  {source:"vlad_korolev",target:"gunzilla_games",relation:"CEO"},
+  {source:"gunzilla_games",target:"layoffs_2026",relation:"拖欠员工薪资"},
+  {source:"iron_galaxy",target:"layoffs_2026",relation:"宣布裁员"},
+  {source:"ea",target:"sims4_marketplace",relation:"推出主机端功能"},
+  {source:"sims4_marketplace",target:"creator_marketing",relation:"扩大UGC社区触达"},
+  {source:"generative_ai",target:"layoffs_2026",relation:"加速岗位替代与结构调整"}
+];
+
+window.addEventListener('DOMContentLoaded', function() {
+  var CM = {company:'steelblue',person:'orange',technology:'#4caf50',event:'crimson',trend:'#9c27b0'};
+  var W = window.innerWidth, H = window.innerHeight;
+  var svg = d3.select('#graph');
+  var g = svg.append('g');
+
+  svg.call(d3.zoom().scaleExtent([0.2,5]).on('zoom', function(e){ g.attr('transform', e.transform); }));
+
+  var nodes = NODES.map(function(n){ return Object.assign({},n); });
+  var links = EDGES.map(function(e){ return Object.assign({},e); });
+
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function(d){ return d.id; }).distance(120))
+    .force('charge', d3.forceManyBody().strength(-280))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collision', d3.forceCollide().radius(function(d){ return Math.sqrt(d.count)*16+16; }));
+
+  var linkSel = g.append('g').selectAll('line').data(links).join('line');
+
+  var nodeSel = g.append('g').selectAll('g').data(nodes).join('g').attr('class','node')
+    .call(d3.drag()
+      .on('start', function(e,d){ if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag',  function(e,d){ d.fx=e.x; d.fy=e.y; })
+      .on('end',   function(e,d){ if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  nodeSel.append('circle')
+    .attr('r', function(d){ return Math.sqrt(d.count)*10+14; })
+    .attr('fill', function(d){ return CM[d.type]||'#aaa'; });
+
+  nodeSel.filter(function(d){ return d.viral; }).append('text')
+    .attr('y', function(d){ return -(Math.sqrt(d.count)*10+20); })
+    .attr('text-anchor','middle').attr('font-size','14px').text('\uD83D\uDD25');
+
+  nodeSel.append('text')
+    .attr('y', 4)
+    .attr('font-size', function(d){ return Math.min(Math.sqrt(d.count)*3+9,12)+'px'; })
+    .text(function(d){ return d.label; });
+
+  var tt = d3.select('#tooltip');
+
+  nodeSel.on('mouseover', function(e,d){
+    tt.style('display','block').html('<b>'+d.label+'</b><br>\u7c7b\u578b\uff1a'+d.type+'<br>\u677f\u5757\uff1a'+d.section+'<br>\u51fa\u73b0\u5468\u6570\uff1a'+d.count+(d.viral?'<br>\uD83D\uDD25 \u66fe\u5f15\u7206':''));
+  }).on('mousemove', function(e){
+    tt.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px');
+  }).on('mouseout', function(){ tt.style('display','none'); });
+
+  nodeSel.on('click', function(e,d){
+    e.stopPropagation();
+    var conn = {};
+    conn[d.id] = true;
+    links.forEach(function(l){
+      if(l.source.id===d.id) conn[l.target.id]=true;
+      if(l.target.id===d.id) conn[l.source.id]=true;
+    });
+    nodeSel.classed('dimmed', function(n){ return !conn[n.id]; });
+    linkSel.classed('highlighted', function(l){ return l.source.id===d.id||l.target.id===d.id; });
+  });
+
+  svg.on('click', function(){
+    nodeSel.classed('dimmed',false);
+    linkSel.classed('highlighted',false);
+  });
+
+  linkSel.on('mouseover', function(e,d){
+    tt.style('display','block').html('\u5173\u7cfb\uff1a<b>'+d.relation+'</b>');
+  }).on('mousemove', function(e){
+    tt.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px');
+  }).on('mouseout', function(){ tt.style('display','none'); });
+
+  sim.on('tick', function(){
+    linkSel
+      .attr('x1',function(d){ return d.source.x; }).attr('y1',function(d){ return d.source.y; })
+      .attr('x2',function(d){ return d.target.x; }).attr('y2',function(d){ return d.target.y; });
+    nodeSel.attr('transform',function(d){ return 'translate('+d.x+','+d.y+')'; });
+  });
 });
 </script>
 </body>
