@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="title">🎮 游戏行业知识图谱</div>
-<div id="subtitle">最后更新：2026-04-27 | 覆盖周期：2026-04-07 至 2026-04-27 | 单击节点可高亮关联关系</div>
+<div id="subtitle">最后更新：2026-05-04 | 覆盖周期：2026-04-07 至 2026-05-04 | 单击节点可高亮关联关系</div>
 <div id="legend">
   <div><span class="dot" style="background:steelblue"></span>公司</div>
   <div><span class="dot" style="background:orange"></span>人物</div>
@@ -35,7 +35,7 @@
 <svg id="graph"></svg>
 <script id="graph-data">
 const GRAPH_DATA = {
-  "accumulated_weeks": ["2026-04-07_2026-04-13","2026-04-14_2026-04-20","2026-04-21_2026-04-27"],
+  "accumulated_weeks": ["2026-04-07_2026-04-13","2026-04-14_2026-04-20","2026-04-21_2026-04-27","2026-04-28_2026-05-04"],
   "nodes": [
     {"id":"warhorse","type":"company","label":"Warhorse Studios","section":"AI与职场变动","count":1,"viral":false},
     {"id":"amazon","type":"company","label":"亚马逊","section":"技术与平台趋势","count":1,"viral":false},
@@ -62,15 +62,25 @@ const GRAPH_DATA = {
     {"id":"iwgb","type":"company","label":"IWGB游戏工人工会","section":"AI与职场变动","count":1,"viral":false},
     {"id":"ly_corporation","type":"company","label":"LY Corporation","section":"行业动态","count":1,"viral":false},
     {"id":"kakao_games","type":"company","label":"Kakao Games","section":"行业动态","count":1,"viral":false},
+    {"id":"second_dinner","type":"company","label":"Second Dinner","section":"AI与职场变动","count":1,"viral":true},
+    {"id":"sony","type":"company","label":"索尼","section":"新游发布","count":1,"viral":false},
+    {"id":"unknown_worlds","type":"company","label":"Unknown Worlds","section":"新游发布","count":1,"viral":false},
+    {"id":"nvidia","type":"company","label":"NVIDIA","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"sensor_tower","type":"company","label":"Sensor Tower","section":"行业动态","count":1,"viral":false},
+    {"id":"io_interactive","type":"company","label":"IO Interactive","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"leenzee_games","type":"company","label":"Leenzee Games","section":"营销与运营","count":1,"viral":false},
+    {"id":"red_candle_games","type":"company","label":"Red Candle Games","section":"营销与运营","count":1,"viral":false},
     {"id":"jennifer_english","type":"person","label":"Jennifer English","section":"本周爆发事件","count":1,"viral":false},
     {"id":"vlad_korolev","type":"person","label":"Vlad Korolev","section":"AI与职场变动","count":1,"viral":false},
     {"id":"asha_sharma","type":"person","label":"Asha Sharma","section":"本周爆发事件","count":1,"viral":false},
     {"id":"matt_booty","type":"person","label":"Matt Booty","section":"本周爆发事件","count":1,"viral":false},
     {"id":"luke_dicken","type":"person","label":"Luke Dicken","section":"AI与职场变动","count":1,"viral":false},
-    {"id":"gdc_2026","type":"event","label":"GDC 2026","section":"AI与职场变动","count":3,"viral":false},
+    {"id":"ben_brode","type":"person","label":"Ben Brode","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"griffin_bennett","type":"person","label":"Griffin Bennett","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"gdc_2026","type":"event","label":"GDC 2026","section":"AI与职场变动","count":4,"viral":false},
     {"id":"starfield_ps5","type":"event","label":"星空PS5发布","section":"新游发布","count":1,"viral":false},
     {"id":"amazon_luna_shutdown","type":"event","label":"Luna关闭","section":"技术与平台趋势","count":1,"viral":false},
-    {"id":"layoffs_2026","type":"event","label":"2026裁员潮","section":"AI与职场变动","count":3,"viral":false},
+    {"id":"layoffs_2026","type":"event","label":"2026裁员潮","section":"AI与职场变动","count":4,"viral":false},
     {"id":"clair_obscur","type":"event","label":"Clair Obscur: Expedition 33","section":"本周爆发事件","count":1,"viral":true},
     {"id":"bafta_2026","type":"event","label":"BAFTA游戏奖2026","section":"本周爆发事件","count":1,"viral":true},
     {"id":"pragmata","type":"event","label":"Pragmata发售","section":"新游发布","count":1,"viral":false},
@@ -80,12 +90,22 @@ const GRAPH_DATA = {
     {"id":"barb_lawsuit","type":"event","label":"BARB间谍软件诉讼","section":"AI与职场变动","count":1,"viral":false},
     {"id":"take_two_ai_dissolution","type":"event","label":"Take-Two AI团队解散","section":"AI与职场变动","count":1,"viral":false},
     {"id":"project_helix","type":"event","label":"Project Helix","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"marvel_snap_layoffs","type":"event","label":"Marvel Snap裁员危机","section":"本周爆发事件","count":1,"viral":true},
+    {"id":"subnautica2_ea","type":"event","label":"Subnautica 2 EA发布","section":"新游发布","count":1,"viral":false},
+    {"id":"ps_plus_may2026","type":"event","label":"PS Plus 5月阵容","section":"新游发布","count":1,"viral":false},
+    {"id":"wuchang_ff","type":"event","label":"卧龙：苍天陨落","section":"新游发布","count":1,"viral":false},
+    {"id":"nine_sols","type":"event","label":"Nine Sols全球曝光","section":"新游发布","count":1,"viral":false},
+    {"id":"forza_horizon_6","type":"event","label":"Forza Horizon 6","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"007_first_light","type":"event","label":"007 First Light","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"ai_translation","type":"technology","label":"AI翻译","section":"AI与职场变动","count":1,"viral":false},
-    {"id":"generative_ai","type":"technology","label":"生成式AI","section":"AI与职场变动","count":3,"viral":false},
+    {"id":"generative_ai","type":"technology","label":"生成式AI","section":"AI与职场变动","count":4,"viral":false},
     {"id":"ai_dev_tools","type":"technology","label":"AI开发工具","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"teramind","type":"technology","label":"Teramind监控软件","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"geforce_now","type":"technology","label":"GeForce NOW","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"rtx_5080","type":"technology","label":"RTX 5080","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"game_pass","type":"technology","label":"Xbox Game Pass","section":"营销与运营","count":1,"viral":false},
     {"id":"cloud_gaming","type":"trend","label":"云游戏整合","section":"技术与平台趋势","count":2,"viral":false},
-    {"id":"mobile_monetization","type":"trend","label":"移动变现","section":"移动游戏","count":2,"viral":false},
+    {"id":"mobile_monetization","type":"trend","label":"移动变现","section":"移动游戏","count":3,"viral":false},
     {"id":"hybrid_casual","type":"trend","label":"混合休闲","section":"移动游戏","count":2,"viral":false},
     {"id":"creator_marketing","type":"trend","label":"创作者营销","section":"营销与运营","count":2,"viral":false},
     {"id":"gaming_ads","type":"trend","label":"游戏内广告","section":"营销与运营","count":1,"viral":false},
@@ -93,7 +113,11 @@ const GRAPH_DATA = {
     {"id":"cross_platform","type":"trend","label":"跨平台策略转变","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"game_unionization","type":"trend","label":"游戏业工会化","section":"AI与职场变动","count":1,"viral":false},
     {"id":"ai_team_restructure","type":"trend","label":"AI研究团队重组","section":"AI与职场变动","count":1,"viral":false},
-    {"id":"dap_metric","type":"trend","label":"日活跃玩家北极星","section":"本周爆发事件","count":1,"viral":false}
+    {"id":"dap_metric","type":"trend","label":"日活跃玩家北极星","section":"本周爆发事件","count":1,"viral":false},
+    {"id":"mobile_revenue_plateau","type":"trend","label":"移动收入增速放缓","section":"移动游戏","count":1,"viral":false},
+    {"id":"asian_indie_global","type":"trend","label":"亚洲独立游戏全球化","section":"营销与运营","count":1,"viral":false},
+    {"id":"ea_strategy","type":"trend","label":"抢先体验策略","section":"营销与运营","count":1,"viral":false},
+    {"id":"ai_sentiment_negative","type":"trend","label":"从业者AI负面情绪高涨","section":"AI与职场变动","count":1,"viral":false}
   ],
   "edges": [
     {"source":"warhorse","target":"ai_translation","relation":"用AI替代翻译","count":1},
@@ -106,7 +130,7 @@ const GRAPH_DATA = {
     {"source":"bethesda","target":"starfield_ps5","relation":"开发发行","count":1},
     {"source":"amazon","target":"amazon_luna_shutdown","relation":"平台收缩","count":1},
     {"source":"amazon_luna_shutdown","target":"cloud_gaming","relation":"加速整合","count":1},
-    {"source":"gdc_2026","target":"generative_ai","relation":"发布行业调查","count":3},
+    {"source":"gdc_2026","target":"generative_ai","relation":"发布行业调查","count":4},
     {"source":"ai_dev_tools","target":"layoffs_2026","relation":"加速替代人工","count":1},
     {"source":"mobile_monetization","target":"hybrid_casual","relation":"驱动增长","count":1},
     {"source":"pe_gaming_ma","target":"scopely","relation":"私募推动扩张","count":1},
@@ -143,7 +167,36 @@ const GRAPH_DATA = {
     {"source":"game_unionization","target":"barb_lawsuit","relation":"驱动维权行动","count":1},
     {"source":"generative_ai","target":"ai_team_restructure","relation":"引发战略重新定位","count":1},
     {"source":"cross_platform","target":"halo_ps","relation":"具体体现","count":1},
-    {"source":"ly_corporation","target":"kakao_games","relation":"增持2亿美元股份","count":1}
+    {"source":"ly_corporation","target":"kakao_games","relation":"增持2亿美元股份","count":1},
+    {"source":"second_dinner","target":"marvel_snap_layoffs","relation":"宣布裁员","count":1},
+    {"source":"ben_brode","target":"second_dinner","relation":"联合创始人","count":1},
+    {"source":"griffin_bennett","target":"second_dinner","relation":"前社区经理","count":1},
+    {"source":"marvel_snap_layoffs","target":"layoffs_2026","relation":"属于2026裁员潮","count":1},
+    {"source":"generative_ai","target":"ai_sentiment_negative","relation":"引发从业者负面情绪","count":1},
+    {"source":"gdc_2026","target":"ai_sentiment_negative","relation":"报告量化该趋势","count":1},
+    {"source":"sony","target":"ps_plus_may2026","relation":"运营PS Plus服务","count":1},
+    {"source":"ea","target":"ps_plus_may2026","relation":"EA Sports FC 26入选","count":1},
+    {"source":"leenzee_games","target":"wuchang_ff","relation":"开发","count":1},
+    {"source":"red_candle_games","target":"nine_sols","relation":"开发","count":1},
+    {"source":"wuchang_ff","target":"ps_plus_may2026","relation":"入选PS Plus","count":1},
+    {"source":"nine_sols","target":"ps_plus_may2026","relation":"入选PS Plus","count":1},
+    {"source":"wuchang_ff","target":"asian_indie_global","relation":"代表案例","count":1},
+    {"source":"nine_sols","target":"asian_indie_global","relation":"代表案例","count":1},
+    {"source":"unknown_worlds","target":"subnautica2_ea","relation":"开发","count":1},
+    {"source":"subnautica2_ea","target":"game_pass","relation":"首发加入","count":1},
+    {"source":"subnautica2_ea","target":"ea_strategy","relation":"采用EA策略","count":1},
+    {"source":"microsoft","target":"game_pass","relation":"运营","count":1},
+    {"source":"microsoft","target":"forza_horizon_6","relation":"发行","count":1},
+    {"source":"nvidia","target":"geforce_now","relation":"运营云游戏平台","count":1},
+    {"source":"rtx_5080","target":"geforce_now","relation":"算力扩容","count":1},
+    {"source":"forza_horizon_6","target":"geforce_now","relation":"首发上云","count":1},
+    {"source":"io_interactive","target":"007_first_light","relation":"开发","count":1},
+    {"source":"sensor_tower","target":"mobile_revenue_plateau","relation":"报告数据支撑","count":1},
+    {"source":"mobile_revenue_plateau","target":"mobile_monetization","relation":"驱动变现创新","count":1},
+    {"source":"layoffs_2026","target":"ai_sentiment_negative","relation":"叠加加剧负面情绪","count":1},
+    {"source":"sony","target":"asian_indie_global","relation":"平台推动","count":1},
+    {"source":"xbox","target":"forza_horizon_6","relation":"独家首发平台","count":1},
+    {"source":"game_pass","target":"ea_strategy","relation":"协同降低试玩门槛","count":1}
   ]
 };
 </script>
