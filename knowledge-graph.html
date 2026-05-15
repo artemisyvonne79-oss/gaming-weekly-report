@@ -7,11 +7,11 @@
 <style>
   body { margin:0; background:#1a1a2e; font-family:'Segoe UI',sans-serif; overflow:hidden; }
   #title { position:absolute; top:16px; left:50%; transform:translateX(-50%); color:#e0e0ff; font-size:20px; font-weight:bold; text-align:center; z-index:10; }
-  #subtitle { position:absolute; top:44px; left:50%; transform:translateX(-50%); color:#888; font-size:12px; z-index:10; }
+  #subtitle { position:absolute; top:44px; left:50%; transform:translateX(-50%); color:#888; font-size:12px; z-index:10; white-space:nowrap; }
   #legend { position:absolute; top:16px; right:16px; background:rgba(0,0,0,0.6); border-radius:8px; padding:10px 14px; z-index:10; color:#ccc; font-size:12px; }
   #legend div { margin:4px 0; display:flex; align-items:center; gap:8px; }
   #legend span.dot { display:inline-block; width:12px; height:12px; border-radius:50%; }
-  #tooltip { position:absolute; display:none; background:rgba(10,10,30,0.92); border:1px solid #444; border-radius:8px; padding:10px 14px; color:#eee; font-size:13px; pointer-events:none; max-width:220px; z-index:20; line-height:1.6; }
+  #tooltip { position:absolute; display:none; background:rgba(10,10,30,0.92); border:1px solid #444; border-radius:8px; padding:10px 14px; color:#eee; font-size:13px; pointer-events:none; max-width:240px; z-index:20; line-height:1.6; }
   .node circle { cursor:pointer; stroke:#fff; stroke-width:1.5px; }
   .node text { fill:#eee; font-size:11px; pointer-events:none; text-anchor:middle; dominant-baseline:middle; }
   .link { stroke:#555; stroke-opacity:0.5; }
@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="title">🎮 游戏行业知识图谱</div>
-<div id="subtitle">最后更新：2026-05-04 | 覆盖周期：2026-04-07 至 2026-05-04 | 单击节点可高亮关联关系</div>
+<div id="subtitle">最后更新：2026-05-11 | 覆盖周期：2026-04-07 至 2026-05-17 | 单击节点可高亮关联关系</div>
 <div id="legend">
   <div><span class="dot" style="background:steelblue"></span>公司</div>
   <div><span class="dot" style="background:orange"></span>人物</div>
@@ -35,7 +35,7 @@
 <svg id="graph"></svg>
 <script id="graph-data">
 const GRAPH_DATA = {
-  "accumulated_weeks": ["2026-04-07_2026-04-13","2026-04-14_2026-04-20","2026-04-21_2026-04-27","2026-04-28_2026-05-04"],
+  "accumulated_weeks": ["2026-04-07_2026-04-13","2026-04-14_2026-04-20","2026-04-21_2026-04-27","2026-04-28_2026-05-04","2026-05-11_2026-05-17"],
   "nodes": [
     {"id":"warhorse","type":"company","label":"Warhorse Studios","section":"AI与职场变动","count":1,"viral":false},
     {"id":"amazon","type":"company","label":"亚马逊","section":"技术与平台趋势","count":1,"viral":false},
@@ -48,7 +48,7 @@ const GRAPH_DATA = {
     {"id":"cvc_capital","type":"company","label":"CVC Capital","section":"行业动态","count":1,"viral":false},
     {"id":"bethesda","type":"company","label":"Bethesda","section":"新游发布","count":1,"viral":false},
     {"id":"microsoft","type":"company","label":"微软","section":"新游发布","count":2,"viral":false},
-    {"id":"royal_match","type":"company","label":"Royal Match","section":"营销与运营","count":1,"viral":false},
+    {"id":"royal_match","type":"company","label":"Royal Match","section":"营销与运营","count":2,"viral":false},
     {"id":"sandfall_interactive","type":"company","label":"Sandfall Interactive","section":"新游发布","count":1,"viral":false},
     {"id":"capcom","type":"company","label":"Capcom","section":"新游发布","count":1,"viral":false},
     {"id":"gunzilla_games","type":"company","label":"Gunzilla Games","section":"AI与职场变动","count":1,"viral":false},
@@ -58,7 +58,7 @@ const GRAPH_DATA = {
     {"id":"xbox","type":"company","label":"Xbox品牌","section":"本周爆发事件","count":1,"viral":true},
     {"id":"build_a_rocket_boy","type":"company","label":"Build A Rocket Boy","section":"AI与职场变动","count":1,"viral":false},
     {"id":"behaviour_interactive","type":"company","label":"Behaviour Interactive","section":"AI与职场变动","count":1,"viral":false},
-    {"id":"take_two","type":"company","label":"Take-Two Interactive","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"take_two","type":"company","label":"Take-Two Interactive","section":"AI与职场变动","count":2,"viral":false},
     {"id":"iwgb","type":"company","label":"IWGB游戏工人工会","section":"AI与职场变动","count":1,"viral":false},
     {"id":"ly_corporation","type":"company","label":"LY Corporation","section":"行业动态","count":1,"viral":false},
     {"id":"kakao_games","type":"company","label":"Kakao Games","section":"行业动态","count":1,"viral":false},
@@ -70,6 +70,18 @@ const GRAPH_DATA = {
     {"id":"io_interactive","type":"company","label":"IO Interactive","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"leenzee_games","type":"company","label":"Leenzee Games","section":"营销与运营","count":1,"viral":false},
     {"id":"red_candle_games","type":"company","label":"Red Candle Games","section":"营销与运营","count":1,"viral":false},
+    {"id":"gamestop","type":"company","label":"GameStop","section":"本周爆发事件","count":1,"viral":true},
+    {"id":"ebay","type":"company","label":"eBay","section":"本周爆发事件","count":1,"viral":false},
+    {"id":"td_securities","type":"company","label":"TD Securities","section":"本周爆发事件","count":1,"viral":false},
+    {"id":"2k_games","type":"company","label":"2K Games","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"31st_union","type":"company","label":"31st Union","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"metacore","type":"company","label":"Metacore","section":"行业动态","count":1,"viral":false},
+    {"id":"supercell","type":"company","label":"Supercell","section":"行业动态","count":1,"viral":false},
+    {"id":"survios","type":"company","label":"Survios","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"wizards_coast","type":"company","label":"Wizards of the Coast","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"hasbro","type":"company","label":"Hasbro","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"cwa_union","type":"company","label":"CWA工会","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"atari","type":"company","label":"Atari（雅达利）","section":"行业动态","count":1,"viral":false},
     {"id":"jennifer_english","type":"person","label":"Jennifer English","section":"本周爆发事件","count":1,"viral":false},
     {"id":"vlad_korolev","type":"person","label":"Vlad Korolev","section":"AI与职场变动","count":1,"viral":false},
     {"id":"asha_sharma","type":"person","label":"Asha Sharma","section":"本周爆发事件","count":1,"viral":false},
@@ -77,10 +89,12 @@ const GRAPH_DATA = {
     {"id":"luke_dicken","type":"person","label":"Luke Dicken","section":"AI与职场变动","count":1,"viral":false},
     {"id":"ben_brode","type":"person","label":"Ben Brode","section":"AI与职场变动","count":1,"viral":false},
     {"id":"griffin_bennett","type":"person","label":"Griffin Bennett","section":"AI与职场变动","count":1,"viral":false},
-    {"id":"gdc_2026","type":"event","label":"GDC 2026","section":"AI与职场变动","count":4,"viral":false},
+    {"id":"ryan_cohen","type":"person","label":"Ryan Cohen","section":"本周爆发事件","count":1,"viral":false},
+    {"id":"ben_brinkman","type":"person","label":"Ben Brinkman","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"gdc_2026","type":"event","label":"GDC 2026","section":"AI与职场变动","count":5,"viral":false},
     {"id":"starfield_ps5","type":"event","label":"星空PS5发布","section":"新游发布","count":1,"viral":false},
     {"id":"amazon_luna_shutdown","type":"event","label":"Luna关闭","section":"技术与平台趋势","count":1,"viral":false},
-    {"id":"layoffs_2026","type":"event","label":"2026裁员潮","section":"AI与职场变动","count":4,"viral":false},
+    {"id":"layoffs_2026","type":"event","label":"2026裁员潮","section":"AI与职场变动","count":5,"viral":false},
     {"id":"clair_obscur","type":"event","label":"Clair Obscur: Expedition 33","section":"本周爆发事件","count":1,"viral":true},
     {"id":"bafta_2026","type":"event","label":"BAFTA游戏奖2026","section":"本周爆发事件","count":1,"viral":true},
     {"id":"pragmata","type":"event","label":"Pragmata发售","section":"新游发布","count":1,"viral":false},
@@ -97,27 +111,38 @@ const GRAPH_DATA = {
     {"id":"nine_sols","type":"event","label":"Nine Sols全球曝光","section":"新游发布","count":1,"viral":false},
     {"id":"forza_horizon_6","type":"event","label":"Forza Horizon 6","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"007_first_light","type":"event","label":"007 First Light","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"gamestop_ebay_bid","type":"event","label":"GameStop竞购eBay","section":"本周爆发事件","count":1,"viral":true},
+    {"id":"project_ethos_layoffs","type":"event","label":"Project Ethos裁员重组","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"merge_mansion_deal","type":"event","label":"Merge Mansion纳入Supercell","section":"行业动态","count":1,"viral":false},
+    {"id":"survios_shutdown","type":"event","label":"Survios实际关闭","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"mtg_arena_union","type":"event","label":"MtG Arena工会化","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"wizardry_rights","type":"event","label":"Atari收购Wizardry版权","section":"行业动态","count":1,"viral":false},
+    {"id":"outbound_game","type":"event","label":"Outbound正式发布","section":"新游发布","count":1,"viral":false},
+    {"id":"spiders_closure","type":"event","label":"Spiders工作室关闭","section":"AI与职场变动","count":1,"viral":false},
     {"id":"ai_translation","type":"technology","label":"AI翻译","section":"AI与职场变动","count":1,"viral":false},
-    {"id":"generative_ai","type":"technology","label":"生成式AI","section":"AI与职场变动","count":4,"viral":false},
+    {"id":"generative_ai","type":"technology","label":"生成式AI","section":"AI与职场变动","count":5,"viral":false},
     {"id":"ai_dev_tools","type":"technology","label":"AI开发工具","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"teramind","type":"technology","label":"Teramind监控软件","section":"AI与职场变动","count":1,"viral":false},
     {"id":"geforce_now","type":"technology","label":"GeForce NOW","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"rtx_5080","type":"technology","label":"RTX 5080","section":"技术与平台趋势","count":1,"viral":false},
     {"id":"game_pass","type":"technology","label":"Xbox Game Pass","section":"营销与运营","count":1,"viral":false},
     {"id":"cloud_gaming","type":"trend","label":"云游戏整合","section":"技术与平台趋势","count":2,"viral":false},
-    {"id":"mobile_monetization","type":"trend","label":"移动变现","section":"移动游戏","count":3,"viral":false},
-    {"id":"hybrid_casual","type":"trend","label":"混合休闲","section":"移动游戏","count":2,"viral":false},
-    {"id":"creator_marketing","type":"trend","label":"创作者营销","section":"营销与运营","count":2,"viral":false},
+    {"id":"mobile_monetization","type":"trend","label":"移动变现","section":"移动游戏","count":4,"viral":false},
+    {"id":"hybrid_casual","type":"trend","label":"混合休闲","section":"移动游戏","count":3,"viral":false},
+    {"id":"creator_marketing","type":"trend","label":"创作者营销","section":"营销与运营","count":3,"viral":false},
     {"id":"gaming_ads","type":"trend","label":"游戏内广告","section":"营销与运营","count":1,"viral":false},
-    {"id":"pe_gaming_ma","type":"trend","label":"私募并购","section":"行业动态","count":2,"viral":false},
+    {"id":"pe_gaming_ma","type":"trend","label":"私募并购","section":"行业动态","count":3,"viral":false},
     {"id":"cross_platform","type":"trend","label":"跨平台策略转变","section":"技术与平台趋势","count":1,"viral":false},
-    {"id":"game_unionization","type":"trend","label":"游戏业工会化","section":"AI与职场变动","count":1,"viral":false},
+    {"id":"game_unionization","type":"trend","label":"游戏业工会化","section":"AI与职场变动","count":2,"viral":false},
     {"id":"ai_team_restructure","type":"trend","label":"AI研究团队重组","section":"AI与职场变动","count":1,"viral":false},
     {"id":"dap_metric","type":"trend","label":"日活跃玩家北极星","section":"本周爆发事件","count":1,"viral":false},
     {"id":"mobile_revenue_plateau","type":"trend","label":"移动收入增速放缓","section":"移动游戏","count":1,"viral":false},
     {"id":"asian_indie_global","type":"trend","label":"亚洲独立游戏全球化","section":"营销与运营","count":1,"viral":false},
     {"id":"ea_strategy","type":"trend","label":"抢先体验策略","section":"营销与运营","count":1,"viral":false},
-    {"id":"ai_sentiment_negative","type":"trend","label":"从业者AI负面情绪高涨","section":"AI与职场变动","count":1,"viral":false}
+    {"id":"ai_sentiment_negative","type":"trend","label":"从业者AI负面情绪高涨","section":"AI与职场变动","count":2,"viral":false},
+    {"id":"psvr2_crisis","type":"trend","label":"PSVR2生态危机深化","section":"技术与平台趋势","count":1,"viral":false},
+    {"id":"casino_mobile_growth","type":"trend","label":"移动赌场广告+22.7%","section":"移动游戏","count":1,"viral":false},
+    {"id":"indie_viral_marketing","type":"trend","label":"独立游戏病毒式推广","section":"营销与运营","count":1,"viral":false}
   ],
   "edges": [
     {"source":"warhorse","target":"ai_translation","relation":"用AI替代翻译","count":1},
@@ -130,7 +155,7 @@ const GRAPH_DATA = {
     {"source":"bethesda","target":"starfield_ps5","relation":"开发发行","count":1},
     {"source":"amazon","target":"amazon_luna_shutdown","relation":"平台收缩","count":1},
     {"source":"amazon_luna_shutdown","target":"cloud_gaming","relation":"加速整合","count":1},
-    {"source":"gdc_2026","target":"generative_ai","relation":"发布行业调查","count":4},
+    {"source":"gdc_2026","target":"generative_ai","relation":"发布行业调查","count":5},
     {"source":"ai_dev_tools","target":"layoffs_2026","relation":"加速替代人工","count":1},
     {"source":"mobile_monetization","target":"hybrid_casual","relation":"驱动增长","count":1},
     {"source":"pe_gaming_ma","target":"scopely","relation":"私募推动扩张","count":1},
@@ -172,8 +197,8 @@ const GRAPH_DATA = {
     {"source":"ben_brode","target":"second_dinner","relation":"联合创始人","count":1},
     {"source":"griffin_bennett","target":"second_dinner","relation":"前社区经理","count":1},
     {"source":"marvel_snap_layoffs","target":"layoffs_2026","relation":"属于2026裁员潮","count":1},
-    {"source":"generative_ai","target":"ai_sentiment_negative","relation":"引发从业者负面情绪","count":1},
-    {"source":"gdc_2026","target":"ai_sentiment_negative","relation":"报告量化该趋势","count":1},
+    {"source":"generative_ai","target":"ai_sentiment_negative","relation":"引发从业者负面情绪","count":2},
+    {"source":"gdc_2026","target":"ai_sentiment_negative","relation":"报告量化该趋势","count":2},
     {"source":"sony","target":"ps_plus_may2026","relation":"运营PS Plus服务","count":1},
     {"source":"ea","target":"ps_plus_may2026","relation":"EA Sports FC 26入选","count":1},
     {"source":"leenzee_games","target":"wuchang_ff","relation":"开发","count":1},
@@ -196,7 +221,32 @@ const GRAPH_DATA = {
     {"source":"layoffs_2026","target":"ai_sentiment_negative","relation":"叠加加剧负面情绪","count":1},
     {"source":"sony","target":"asian_indie_global","relation":"平台推动","count":1},
     {"source":"xbox","target":"forza_horizon_6","relation":"独家首发平台","count":1},
-    {"source":"game_pass","target":"ea_strategy","relation":"协同降低试玩门槛","count":1}
+    {"source":"game_pass","target":"ea_strategy","relation":"协同降低试玩门槛","count":1},
+    {"source":"gamestop","target":"gamestop_ebay_bid","relation":"提出竞购要约","count":1},
+    {"source":"gamestop_ebay_bid","target":"ebay","relation":"目标收购方","count":1},
+    {"source":"ryan_cohen","target":"gamestop","relation":"CEO主导","count":1},
+    {"source":"td_securities","target":"gamestop_ebay_bid","relation":"提供200亿融资承诺","count":1},
+    {"source":"gamestop_ebay_bid","target":"pe_gaming_ma","relation":"引发更多并购讨论","count":1},
+    {"source":"take_two","target":"2k_games","relation":"母公司","count":1},
+    {"source":"2k_games","target":"31st_union","relation":"旗下工作室","count":1},
+    {"source":"ben_brinkman","target":"31st_union","relation":"工作室主管","count":1},
+    {"source":"31st_union","target":"project_ethos_layoffs","relation":"因项目调整裁员","count":1},
+    {"source":"project_ethos_layoffs","target":"layoffs_2026","relation":"属于裁员潮","count":1},
+    {"source":"supercell","target":"metacore","relation":"全面收购","count":1},
+    {"source":"metacore","target":"merge_mansion_deal","relation":"旗舰游戏移交","count":1},
+    {"source":"metacore","target":"layoffs_2026","relation":"160人裁员","count":1},
+    {"source":"survios","target":"survios_shutdown","relation":"裁员导致关闭","count":1},
+    {"source":"survios_shutdown","target":"psvr2_crisis","relation":"加深VR生态危机","count":1},
+    {"source":"hasbro","target":"wizards_coast","relation":"母公司","count":1},
+    {"source":"wizards_coast","target":"mtg_arena_union","relation":"谈判对象","count":1},
+    {"source":"cwa_union","target":"mtg_arena_union","relation":"工会代表","count":1},
+    {"source":"mtg_arena_union","target":"game_unionization","relation":"属于游戏业工会化趋势","count":1},
+    {"source":"atari","target":"wizardry_rights","relation":"收购版权","count":1},
+    {"source":"spiders_closure","target":"layoffs_2026","relation":"属于工作室关闭潮","count":1},
+    {"source":"casino_mobile_growth","target":"mobile_monetization","relation":"广告变现新引擎","count":1},
+    {"source":"hybrid_casual","target":"mobile_monetization","relation":"带动IAP增长","count":1},
+    {"source":"royal_match","target":"creator_marketing","relation":"高创意量生产范式","count":1},
+    {"source":"indie_viral_marketing","target":"creator_marketing","relation":"低成本病毒传播手段","count":1}
   ]
 };
 </script>
@@ -206,30 +256,64 @@ const data = GRAPH_DATA;
 const width = window.innerWidth, height = window.innerHeight;
 const svg = d3.select('#graph').attr('width', width).attr('height', height);
 const g = svg.append('g');
-svg.call(d3.zoom().scaleExtent([0.2, 5]).on('zoom', e => g.attr('transform', e.transform)));
+svg.call(d3.zoom().scaleExtent([0.1, 6]).on('zoom', e => g.attr('transform', e.transform)));
 const nodes = data.nodes.map(n => ({...n}));
+const nodeMap = {};
+nodes.forEach(n => nodeMap[n.id] = n);
 const links = data.edges.map(e => ({...e}));
 const sim = d3.forceSimulation(nodes)
-  .force('link', d3.forceLink(links).id(d => d.id).distance(110))
-  .force('charge', d3.forceManyBody().strength(-350))
+  .force('link', d3.forceLink(links).id(d => d.id).distance(d => 90 + Math.sqrt((d.source.count||1)+(d.target.count||1))*10))
+  .force('charge', d3.forceManyBody().strength(-300))
   .force('center', d3.forceCenter(width/2, height/2))
-  .force('collision', d3.forceCollide().radius(d => Math.sqrt(d.count) * 18 + 12));
+  .force('collision', d3.forceCollide().radius(d => Math.sqrt(d.count)*14+14));
 const link = g.append('g').selectAll('line').data(links).join('line')
-  .attr('class', 'link').attr('stroke-width', d => Math.sqrt(d.count) * 1.2 + 1);
-const node = g.append('g').selectAll('g').data(nodes).join('g').attr('class', 'node')
+  .attr('class','link').attr('stroke-width', d => Math.sqrt(d.count||1)*1.2+0.8);
+const node = g.append('g').selectAll('g').data(nodes).join('g').attr('class','node')
   .call(d3.drag()
-    .on('start', (e,d) => { if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
-    .on('drag',  (e,d) => { d.fx=e.x; d.fy=e.y; })
-    .on('end',   (e,d) => { if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
-node.append('circle').attr('r', d => Math.sqrt(d.count)*10+12).attr('fill', d => COLOR_MAP[d.type]||'#aaa').attr('stroke-width',1.5);
-node.filter(d => d.viral).append('text').attr('class','fire-badge').attr('y', d => -(Math.sqrt(d.count)*10+16)).attr('text-anchor','middle').attr('font-size','14px').text('🔥');
-node.append('text').attr('y',1).attr('font-size', d => Math.min(Math.sqrt(d.count)*4+9,12)).text(d => d.label);
+    .on('start',(e,d)=>{ if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+    .on('drag', (e,d)=>{ d.fx=e.x; d.fy=e.y; })
+    .on('end',  (e,d)=>{ if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+node.append('circle')
+  .attr('r', d => Math.sqrt(d.count)*10+12)
+  .attr('fill', d => COLOR_MAP[d.type]||'#aaa')
+  .attr('stroke-width',1.5);
+node.filter(d => d.viral).append('text')
+  .attr('class','fire-badge')
+  .attr('y', d => -(Math.sqrt(d.count)*10+16))
+  .attr('text-anchor','middle').attr('font-size','14px').text('🔥');
+node.append('text')
+  .attr('y',1)
+  .attr('font-size', d => Math.min(Math.sqrt(d.count)*4+9,13))
+  .text(d => d.label);
 const tooltip = d3.select('#tooltip');
-node.on('mouseover',(e,d) => { tooltip.style('display','block').html(`<b>${d.label}</b><br>类型：${d.type}<br>板块：${d.section}<br>出现周数：${d.count}${d.viral?'<br>🔥 曾引爆':''}`); }).on('mousemove',e => { tooltip.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px'); }).on('mouseout',() => tooltip.style('display','none'));
-node.on('click',(e,d) => { e.stopPropagation(); const connected=new Set([d.id]); links.forEach(l => { if(l.source.id===d.id) connected.add(l.target.id); if(l.target.id===d.id) connected.add(l.source.id); }); node.classed('dimmed', n => !connected.has(n.id)); link.classed('highlighted', l => l.source.id===d.id||l.target.id===d.id); });
-svg.on('click',() => { node.classed('dimmed',false); link.classed('highlighted',false); });
-link.on('mouseover',(e,d) => { tooltip.style('display','block').html(`关系：<b>${d.relation}</b><br>出现次数：${d.count}`); }).on('mousemove',e => { tooltip.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px'); }).on('mouseout',() => tooltip.style('display','none'));
-sim.on('tick',() => { link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y); node.attr('transform',d=>`translate(${d.x},${d.y})`); });
+node.on('mouseover',(e,d) => {
+  tooltip.style('display','block').html(
+    `<b>${d.label}</b><br>类型：${d.type}<br>板块：${d.section}<br>出现周数：${d.count}${d.viral?'<br>🔥 曾引爆':''}`
+  );
+}).on('mousemove',e => {
+  tooltip.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px');
+}).on('mouseout',()=>tooltip.style('display','none'));
+node.on('click',(e,d)=>{
+  e.stopPropagation();
+  const connected = new Set([d.id]);
+  links.forEach(l => {
+    if(l.source.id===d.id) connected.add(l.target.id);
+    if(l.target.id===d.id) connected.add(l.source.id);
+  });
+  node.classed('dimmed', n => !connected.has(n.id));
+  link.classed('highlighted', l => l.source.id===d.id||l.target.id===d.id);
+});
+svg.on('click',()=>{ node.classed('dimmed',false); link.classed('highlighted',false); });
+link.on('mouseover',(e,d)=>{
+  tooltip.style('display','block').html(`关系：<b>${d.relation}</b><br>出现次数：${d.count||1}`);
+}).on('mousemove',e=>{
+  tooltip.style('left',(e.pageX+14)+'px').style('top',(e.pageY-30)+'px');
+}).on('mouseout',()=>tooltip.style('display','none'));
+sim.on('tick',()=>{
+  link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
+      .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+  node.attr('transform',d=>`translate(${d.x},${d.y})`);
+});
 </script>
 </body>
 </html>
